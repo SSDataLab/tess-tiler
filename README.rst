@@ -24,7 +24,8 @@ These parameters are defined as follows:
 * An optional ``margin`` parameter can be specified to allow tiles to overlap by a specified number of pixels.
 
 
-For example:
+Examples
+~~~~~~~~
 
 ==========================  =================
 tile definition             description
@@ -36,7 +37,10 @@ TessTile(1, 2, 3, 2, 2, 0)  Bottom-right octant (1/8th).
 TessTile(1, 2, 3, 2, 0, 2)  Top-left octant.
 ==========================  =================
 
-This tiling scheme provides a convenient way to work with sub-sections of FFI images. The number of tiles and memory requirements as a function of the zoom level are as follows: 
+Memory requirements
+~~~~~~~~~~~~~~~~~~~
+
+The memory required to store a single tile as a function of the zoom level is as follows: 
 
 ========== ========= ============== ========== ============
 zoom level tiles/ccd tile_size (px) sky area   bytes/sector
