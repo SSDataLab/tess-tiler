@@ -3,7 +3,7 @@ tess-tiler
 
 **Turns big FFI data into small FFI data.**
 
-*tess-tiler* is a fast and memory-efficient package designed to convert collections of TESS Full Frame Images (FFI) into sub-sections which can fit more easily into memory. This package uses a pre-defined tiling scheme which allows users to refer to a sub-sections of FFIs in a standardized way.  It is inspired by the `map tiling scheme <https://www.maptiler.com/google-maps-coordinates-tile-bounds-projection/>`_ in use by Google Maps.
+*tess-tiler* is a fast and memory-efficient package designed to convert collections of TESS Full Frame Images (FFI) into sub-sections which can fit into memory. This package uses a pre-defined tiling scheme which allows users to refer to a sub-sections of FFIs in a standardized way.  It is inspired by the `map tiling scheme <https://www.maptiler.com/google-maps-coordinates-tile-bounds-projection/>`_ in use by Google Maps.
 
 The *tess-tiler* tiling scheme
 ------------------------------
@@ -38,9 +38,9 @@ TessTile(1, 2, 3, 2, 0, 2)  Top-left octant.
 
 This tiling scheme provides a convenient way to work with sub-sections of FFI images. The number of tiles and memory requirements as a function of the zoom level are as follows: 
 
-========== ========= ============== ========== ===========
-zoom level tiles/ccd tile_size (px) sky area   bits/sector
-========== ========= ============== ========== ===========
+========== ========= ============== ========== ============
+zoom level tiles/ccd tile_size (px) sky area   bytes/sector
+========== ========= ============== ========== ============
 0            1       2048 x 2048    143 deg²   64 GB
 1            4       1024 x 1024    36 deg²    16 GB
 2            16      512 x 512      9 deg²     4 GB
@@ -48,7 +48,7 @@ zoom level tiles/ccd tile_size (px) sky area   bits/sector
 4            64      128 x 128      0.6 deg²   256 MB
 5            128     64 x 64        0.1 deg²   64 MB
 6            256     32 x 32        0.04 deg²  16 MB
-========== ========= ============== ========== ===========
+========== ========= ============== ========== ============
 
 In this table, bits/sector denotes the amount of memory required to cut out 27 days worth of 10-minute FFI data at 32 bits per pixel.
 
@@ -56,16 +56,16 @@ In this table, bits/sector denotes the amount of memory required to cut out 27 d
 Example use
 -----------
 
-The `tess-tiler` package provides a fast and memory-efficient way to extract the image data for an entire sector of FFIs, without utilizing more than the memory required by the specific tile. 
+*tess-tiler* provides a fast and memory-efficient way to extract the image data for an entire sector of FFIs, without utilizing more than the memory required by the specific tile. 
 
 .. code-block:: python
 
     >>> import tess_tiler as tt
+    >>> tile = tt.TessTile(sector=1, camera=2, ccd=3, zoom=4, x=2, y=3)
     >>> loader = tt.TileLoader(ffi_filenames)
-    >>> tiledef = tt.TessTile(sector=1, camera=2, ccd=3, zoom=4, x=2, y=3)
-    >>> tpf = loader.create_tpf(tiledef)
+    >>> tpf = loader.create_tpf(tile)
 
-To create a list of ``TessTile` objects that cover a specific coordinate in the sky, you can use the sister *tess-fov* package:
+To create a list of ``TessTile`` objects that cover a specific coordinate in the sky, you can use the sister *tess-fov* package:
 
 .. code-block:: python
 
@@ -80,7 +80,7 @@ To obtain the parameters of all the tiles that observed a known Solar System obj
     >>> tiles = te.asteroid_to_tiles("Vesta", zoom=2)  # returns a list of TessTile objects
 
 
-How does `tess-tiler` compare to other tools?
+How does *tess-tiler* compare to other tools?
 ---------------------------------------------
 Several excellent tools already exist which focus on enabling users to extract or download sub-regions from FFI images via the web, for example:
 
