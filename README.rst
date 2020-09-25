@@ -3,7 +3,7 @@ tess-tiler
 
 **Turns big FFI data into small FFI data.**
 
-*tess-tiler* is a fast and memory-efficient package designed to convert collections of TESS Full Frame Images (FFI) into sub-sections which can fit into memory. This package uses a pre-defined tiling scheme which allows users to refer to a sub-sections of FFIs in a standardized way.  It is inspired by the `map tiling scheme <https://www.maptiler.com/google-maps-coordinates-tile-bounds-projection/>`_ in use by Google Maps.
+*tess-tiler* is a fast and memory-efficient package designed to convert collections of TESS Full Frame Images (FFI) into sub-sections which can fit into memory. This package uses a pre-defined tiling scheme which allows users to refer to a sub-sections of FFIs in a standardized way.  It is based upon the `map tiling scheme <https://www.maptiler.com/google-maps-coordinates-tile-bounds-projection/>`_ in use by Google Maps.
 
 The *tess-tiler* tiling system
 ------------------------------
