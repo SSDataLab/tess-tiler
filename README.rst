@@ -3,17 +3,16 @@ tess-tiler
 
 **Turns Big FFI Data into Small FFI Data.**
 
-`tess-tiler` is a user-friendly package intended to turn big sets of TESS Full Frame Images (FFI) into smaller tiles which can fit more easily into memory.
+*tess-tiler* is a user-friendly package intended to turn big sets of TESS Full Frame Images (FFI) into smaller tiles which can fit more easily into memory. The package uses a pre-defined tiling scheme which allows users to refer to a sub-set of FFI data in a convenient and well-defined way, inspired by the tiling scheme adopted by Google Maps.
 
-The tess-tiler tiling scheme
------------------------------
-`tess-tiler` uses a pre-defined tiling scheme which allows users to refer to a sub-set of FFI data in a convenient and well-defined way, inspired by the way Google Maps and other online map browsers tile the planet.
+The *tess-tiler* tiling scheme
+------------------------------
 
-Each tile is uniquely identified by a tuple of six numbers, (sector, camera, ccd, zoom, x, y), which are defined as follows:
+Each tile is uniquely identified by a tuple of six numbers, ``(sector, camera, ccd, zoom, x, y)``, which are defined as follows:
 
-* `sector`, `camera`, and `ccd` are the standard TESS full-frame image identifiers.
-* The *zoom* level is defined such that an FFI fits entirely into a single tile at :math:`\mathrm{zoom}=0`. All subsequent zoom levels divide the image into a grid of :math:`2^\mathrm{zoom} \times 2^\mathrm{zoom}` tiles.
-* The (x, y) coordinates identify the position of the tile along the column and row direction of the FFI, ranging between 0 and :math:`2^\mathrm{zoom} - 1`. For example, tile (0, 0) is located in the bottom left of the FFI.
+* ``sector``, ``camera``, and ``ccd`` are the standard TESS full-frame image identifiers.
+* The ``zoom`` level is defined such that an FFI fits entirely into a single tile at ``zoom=0``. All subsequent zoom levels divide the image into a grid of 2^zoom x 2^zoom tiles.
+* The (x, y) coordinates identify the position of the tile along the column and row direction of the FFI, ranging between 0 and 2^zoom - 1.  Tile (x, y) = (0, 0) is located in the bottom left of the FFI.
 
 
 For example:
@@ -21,8 +20,8 @@ For example:
 ================== =================
 tile_identifier    description
 ================== =================
-(1, 2, 3, 0, 0, 0)   FFI for Sector #1, Camera #2, CCD #3.
-(1, 2, 3, 1, 0, 0)   Bottom-left quadrant (1/4th) in the same FFI.
+(1, 2, 3, 0, 0, 0)   Full FFI for Sector #1, Camera #2, CCD #3.
+(1, 2, 3, 1, 0, 0)   Bottom-left quadrant (1/4th) of the same FFI.
 (1, 2, 3, 1, 1, 1)   Top-right quadrant.
 (1, 2, 3, 2, 2, 0)   Bottom-right octant (1/8th).
 (1, 2, 3, 2, 0, 2)   Top-left octant.
@@ -59,7 +58,7 @@ The `tess-tiler` package provides a fast and memory-efficient way to extract the
 
 How does `tess-tiler` compare to other tools?
 ---------------------------------------------
-Several excellent tools already exist which focus on enabling users to extract or download sub-regions from FFI images via the web:
+Several excellent tools already exist which focus on enabling users to extract or download sub-regions from FFI images via the web, for example:
 
-* `TessCut` enables users to download regions up to 100x100 pixels in size centered on an arbitrary coordinate. In contrast, `TessTiler` focuses on extracting larger tiles which cover the entire FFI in a pre-defined tiling scheme.
-* `eleanor` enables users to download 104-by-148 pixel cutout regions called *postcards*. `TessTiler` expands on this concept by providing a generic tool to create such postcards at different zoom levels.
+* ``TessCut`` enables users to download regions up to 100x100 pixels in size centered on an arbitrary coordinate. In contrast, `TessTiler` focuses on extracting larger tiles which cover the entire FFI in a pre-defined tiling scheme.
+* ``eleanor`` enables users to download 104-by-148 pixel cutout regions called postcards. *tess-tiler* expands this concept by providing a generic tool to create such postcards at different zoom levels.
