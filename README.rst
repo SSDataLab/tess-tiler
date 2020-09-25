@@ -5,7 +5,7 @@ tess-tiler
 
 *tess-tiler* is a fast and memory-efficient package designed to convert collections of TESS Full Frame Images (FFI) into sub-sections which can fit into memory. This package uses a pre-defined tiling scheme which allows users to refer to a sub-sections of FFIs in a standardized way.  It is inspired by the `map tiling scheme <https://www.maptiler.com/google-maps-coordinates-tile-bounds-projection/>`_ in use by Google Maps.
 
-The *tess-tiler* tiling scheme
+The *tess-tiler* tiling system
 ------------------------------
 
 Each tile is uniquely identified by six parameters:
@@ -22,6 +22,8 @@ These parameters are defined as follows:
 * The ``zoom`` level is defined such that an FFI fits entirely into a single tile at zoom level 0. All subsequent zoom levels divide the image into a grid of 2^zoom x 2^zoom tiles.
 * The (x, y) parameters identify the position of the tile along the column and row direction of the FFI. Their values range between 0 and 2^zoom - 1.  Tile (x, y) = (0, 0) is the bottom left corner of the FFI.
 * An optional ``margin`` parameter can be specified to allow tiles to overlap by a specified number of pixels.
+
+.. image:: https://mapchete.readthedocs.io/en/stable/_images/mercator_pyramid.svg
 
 
 Examples
@@ -54,7 +56,7 @@ zoom level tiles/ccd tile_size (px) sky area   bytes/sector
 6            256     32 x 32        0.04 deg²  16 MB
 ========== ========= ============== ========== ============
 
-In this table, bits/sector denotes the amount of memory required to cut out 27 days worth of 10-minute FFI data at 32 bits per pixel.
+In this table, bytes/sector denotes the amount of memory required to cut out 27 days worth of 10-minute FFI data at 32 bits per pixel.
 
 
 Example use
