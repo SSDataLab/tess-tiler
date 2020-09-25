@@ -56,6 +56,14 @@ The `tess-tiler` package provides a fast and memory-efficient way to extract the
     >>> loader = tt.TileLoader(ffi_filenames)
     >>> tpf = loader.get_tpf(zoom=4, x=2, y=3)
 
+To obtain the tile that covers a specific coordinate in the sky, you can use the sister *tess-fov* package:
+
+.. code-block:: python
+
+    tess_fov as tf
+    fov = tf.TessFov()
+    tiles = fov.radec_to_tiles(ra, dec)
+
 
 How does `tess-tiler` compare to other tools?
 ---------------------------------------------
